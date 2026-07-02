@@ -1,0 +1,29 @@
+import random
+
+guessing_num = random.randint(0,100)
+prev_guess = []
+attempts = 0
+
+print("Welcome to the Number Guessing game..!")
+print("I have picked a number between 1 to 100. Try to Guess it..!")
+
+while True:
+    try:
+        guess = int(input("\n Guess the Number between 1 to 100: "))
+        attempts += 1
+        prev_guess.append(guess)
+
+        if guess > guessing_num:
+            print("❌ its too High..Try again.!")
+            print(f"Your attempts: {attempts}")
+        elif guess < guessing_num:
+            print("❌ its too Low..Try again..!")
+            print(f"Your attemps: {attempts}")
+        else:
+            print("Congratulations..!🎉  You guessed it!")
+            print(f"Total number of attempts taken: {attempts}")
+            print(f"Your previous guesses: {prev_guess}")
+            break
+
+    except ValueError:
+        print("Invaid input..! Please enter the numberic values only..")
