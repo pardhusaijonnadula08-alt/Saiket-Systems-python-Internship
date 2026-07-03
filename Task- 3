@@ -1,0 +1,25 @@
+print("----- Basic File Handling Tool ----- \n")
+
+file_name = input("Enter the name of the file: ")
+old_word = input("Enter the word to change: ")
+new_word = input("Enter the word to replace: ")
+
+try:
+    # reads the file
+    with open(file_name, "r" , encoding = "utf-8") as f:
+        content = f.read()
+
+    if old_word not in content:
+        print(f"The given word not found in {file_name}..No changes done!")
+    else:
+        modified_data = content.replace(old_word , new_word)
+
+        # writes/replaces the word
+        with open(file_name, "w" , encoding = "utf-8" ) as f:
+            f.write(modified_data)
+        print(f"Success..! '{old_word}' has been replaced with '{new_word}' ")
+
+except FileNotFoundError:
+    print("ERROR...! File not found..!")
+except Exception as e:
+    print(f"Unexpected error has been occured {e}! Try again later..!")
