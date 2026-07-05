@@ -19,9 +19,17 @@ A backend-focused text-manipulation utility developed to interact safely with ex
 * **Exception Layering:** Implemented granular fault handling using specific `FileNotFoundError` catch blocks alongside catch-all exceptions to maximize terminal execution stability.
 * **Write Optimization:** Integrated checking logic (`if old_word not in content`) to prevent costly disk write operations if the original target pattern is missing.
 
+### 🌐 Task 4: Basic Web Scraper Tool (`04_Web_Scraper.py`)
+An automated data-extraction utility designed to connect to external web URLs and scrape core page elements dynamically.
+* **DOM Parsing:** Utilizes `BeautifulSoup` to target and pull specific structural tags (`h1`, `h2`) while stripping out unnecessary whitespace padding.
+* **Network Defense:** Uses the `requests` module with strict timeout bounds to handle network latency cleanly and includes custom exception handling to isolate server-side errors.
+
 ## 🛠️ Technical Skill Stack Covered
 * **Language:** Python 3
 * **Concepts:** Object-Oriented Programming (OOP), Data Stream I/O Operations, Encoding Protocols (`utf-8`)
 * **Defensive Coding:** Advanced Exception Handling (`try-except` execution loops
+* Web Scraping Libraries (Beautiful Soup, Requests)
+* HTML Parsing Basics
+* Data Extraction Techniques
 
 
