@@ -1,0 +1,26 @@
+import requests
+from bs4 import BeautifulSoup #
+
+print("---- Basic Web Scrapper Tool ---- \n")
+
+url = input("Enter the URL to scrap: ")
+
+try:
+    print(f" Connecton to {url} ")
+    response = requests.get(url, timeout = 10)
+    soup = BeautifulSoup(response.text,"html.parser")
+
+    print("\n Scanning page structure for main Headings...")
+    headings = soup.find_all(['h1' , 'h2'])
+
+    print(f"Successfully found {len(headings)} elements..! \n")
+    print("-" * 50)
+
+    for index,element in enumerate(headings,start=1):
+        clean_text = element.get_text(" ",strip = True)
+        print(f"[ #{index} {clean_text}]")
+
+except requests.RequestException as e:
+    print("ERROR!!",e)
+except Exception as e:
+    print("Unexpected error!:", e)
