@@ -1,0 +1,51 @@
+import requests
+
+print("------- Real-Time Currency Converter ------- \n")
+
+API_URL = "https://open.er-api.com/v6/latest/USD"
+
+try:
+    print(" Fetching Live exchange rates from Internet...... ")
+    response = requests.get(API_URL, timeout = 10)
+    response.raise_for_status()
+
+    data = response.json()
+    rates = data.get("rates",{})
+    print("successfully loaded real-time currency..!")
+
+    #1 To validate from currency
+    from_currency = input("Enter the currency you HAVE (Eg: INR,USD,JYP): ").upper()
+    if from_currency not in rates:
+        print(f"Error..! given {from_currency} is not recognised..!")
+        exit()
+    
+    #2 To validate to currency
+    to_currency = input("Enter the currency you want to convert TO: ").upper()
+    if to_currency not in rates:
+        print(f"ERROR! given {to_currency} is not recognised!")
+        exit()
+
+    #3 To get and validate the amount
+    amount_input = input(f"Enter the amount in {from_currency}: ")
+    try:
+        amount = float(amount_input)
+        if amount<0:
+            print("Amount can't be in negative..!")
+            exit()
+    except ValueError:
+        print("Invalid! amount input..try again using valid number...")
+        exit()
+
+    #4 converting FROM money to TO money
+    amount_in_usd = amount / rates[from_currency]
+    converted_amount = amount_in_usd * rates[to_currency]
+
+    print("\n " + "="*40 + "\n")
+    print("CONVERSION RESULT: \n ")
+    print(f" {amount:,.3f} {from_currency} ==> {converted_amount:,.3f} {to_currency} \n")
+    print("Succesfully converted..! ")
+    print("\n"+ "=" * 40)
+
+except Exception as e:
+    print(f"Unexpected Error has be occured {e}..! Try again later..!")
+
