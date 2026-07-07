@@ -1,0 +1,35 @@
+print(" ----- Word Count Tool ----- \n")
+
+word_count = 0
+line_count = 0
+char_count = 0
+
+file_name = input("Enter the name of the text file to analyse: ")
+
+try:
+    with open(file_name , 'r' , encoding = "utf-8") as f:
+        lines = f.readlines()
+    line_count = len(lines)
+
+    word_search = input("Enter the word to search: ").lower()
+    search_matchCount = 0
+
+    for line in lines:
+        char_count += len(line)
+        words_in_line = line.split()
+        word_count += len(words_in_line)
+
+        for word in words_in_line:
+            clean_word = word.lower()
+            if clean_word == word_search:
+                search_matchCount += 1
+
+    print("\n Text file metrices: \n")
+    print(f"Total lines : {line_count}")
+    print(f"Total words: {word_count}")
+    print(f"Total Characters: {char_count} \n")
+
+    print(f"Search Result : The word {word_search} was found {search_matchCount} times..!")
+
+except Exception as e:
+    print(f"Unexpected error occured {e}..Try again Later!!")
